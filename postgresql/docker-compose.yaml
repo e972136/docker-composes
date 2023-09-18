@@ -18,9 +18,23 @@ services:
     networks:
       docker_network:
         aliases:
-          - docker_host
+          - postgresql_host
 
-          
+  pgadmin:
+    image: dpage/pgadmin4:2023-09-18-1
+    container_name: docker-pgadmin4
+    environment:
+      PGADMIN_DEFAULT_EMAIL: "admin@patito.com"
+      PGADMIN_DEFAULT_PASSWORD: "admin"
+    ports:
+      - "5050:80"
+    depends_on:
+      - postgresql
+    networks:
+      docker_network:
+        aliases:
+          - postgresql_host
+
 volumes:
   schemas: {}
 networks:

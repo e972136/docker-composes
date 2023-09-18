@@ -19,6 +19,8 @@ services:
       docker_network:
         aliases:
           - docker_host
+
+          
 volumes:
   schemas: {}
 networks:

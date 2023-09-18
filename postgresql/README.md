@@ -1,0 +1,1 @@
+[Instalar pgadmin](https://www.pgadmin.org/download/pgadmin-4-apt/)

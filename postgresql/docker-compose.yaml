@@ -1,0 +1,27 @@
+version: '3.7'
+services:
+  postgresql:
+    build:
+      context: .
+      dockerfile: Dockerfile
+    container_name: docker-postgresql
+    restart: always
+    ports:
+      - 5432:5432
+    environment:
+      POSTGRES_PASSWORD: "123"
+      POSTGRES_USER: "gaspar"
+      POSTGRES_DB: "db_inventory"
+      PGDATA: /var/lib/postgresql/data/pgdata
+    volumes:
+      - ./schemas:/var/lib/postgresql/data
+    networks:
+      docker_network:
+        aliases:
+          - docker_host
+volumes:
+  schemas: {}
+networks:
+  docker_network:
+    name: postgresql_net
+    driver: bridge

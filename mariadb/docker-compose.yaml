@@ -1,0 +1,36 @@
+version: '3.7'
+
+services:
+  mariadb:
+    build:
+      context: .
+      dockerfile: Dockerfile
+    container_name: docker-mariadb
+    restart: always
+    ports:
+      - 3306:3306
+    environment:
+      MARIADB_ROOT_PASSWORD: 123
+      MYSQL_DATABASE: upload_csv
+      MARIADB_USER: gaspar
+      MARIADB_PASSWORD: 123
+    volumes:
+      - ./schemas:/var/lib/mysql
+
+  adminer:
+    image: adminer:4.8.0
+    restart: always
+    ports:
+      - 8001:8080
+
+  phpmyadmin:
+    image: phpmyadmin
+    container_name: phpmyadmin
+    restart: always
+    ports:
+      - 8002:80
+    environment:
+      - PMA_ARBITRARY=1
+
+volumes:
+  schemas: {}

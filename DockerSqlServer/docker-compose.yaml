@@ -1,0 +1,13 @@
+version: '3.7'
+services:
+  sqlserver:
+    build:
+      context: .
+      dockerfile: Dockerfile
+    container_name: docker-sqlserver
+    restart: always
+    ports:
+      - 1433:1433
+    environment:    
+      ACCEPT_EULA: "Y"
+      MSSQL_SA_PASSWORD: "yourStrong#Password"
